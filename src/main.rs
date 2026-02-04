@@ -14,6 +14,8 @@ impl FastqStatsAgg {
     fn update(&mut self, seq: &[u8], quals: &[u8]) {
         let seq_len = seq.len();
 
+        // TODO: optimize by not storing every read length (use vec histogram for hifi?) / keeping running averages
+
         self.read_lengths.push(seq_len);
         self.read_quals.push(quals.iter().map(|&q| (q - 33) as f64).sum::<f64>() / seq_len as f64);
         self.total_bases += seq_len;
