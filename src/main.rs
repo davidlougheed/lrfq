@@ -49,7 +49,7 @@ fn n50(x: &Vec<usize>, total_bases: usize) -> usize {
     for i in(0..x.len()).rev() {
         sum += x[i];
         if sum >= half_total_bases {
-            return i;
+            return x[i];
         }
     }
     0  // unreachable
